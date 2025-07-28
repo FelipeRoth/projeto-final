@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
 
-    <title>{{ titulo }}</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
 </head>
-
 <body>
     <header
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
@@ -25,29 +22,18 @@
             </a>
         </div>
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="/" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="/en" class="nav-link px-2 link-secondary">Home</a></li>
             <li><a href="/" class="nav-link px-2">Produtos</a></li>
             <li><a href="/" class="nav-link px-2">Cadastrar</a></li>
         </ul>
         <div class="col-md-3 text">
 
-            <a href="/en" class="btn btn-outline-primary me-2">🇧🇷</a>
+            <a href="/" class="btn btn-outline-primary me-2">🇺🇸</a> 
 
         </div>
     </header>
     <section class="container-fluid">
-        <h1>{{ titulo }}</h1>
-        <p>{{ paragrafo }}</p>
-
-        <div class="card" style="width: 18rem;">
-            <img src="/static/img/{{elemento[0]}}.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text">{{elemento[1]}}</p>
-            </div>
-        </div>
-
+        <h1>Light Mode</h1>
     </section>
 </body>
-</body>
-
 </html>

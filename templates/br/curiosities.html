@@ -1,0 +1,28 @@
+{% extends 'br/template.html' %}
+
+{% block title %}
+Curiosidades
+{% endblock %}
+
+{% block body %}
+    <section class="container-fluid">
+        <h1>Todas as curiosidades</h1>
+        <p>Estas são todas as curiosidades que podem aparecer na pagina inicial</p>
+        
+        <div class="row" style="flex-wrap: wrap;">
+        {% for curiosidade in curiosidades %}
+        <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
+            <div class="card" style="width: 18rem; height: 25rem;">
+                <img src="/static/img/{{curiosidade[2]}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h2 class="card-title">{{curiosidade[0]}}</h2>
+                    <p class="card-text">{{curiosidade[1]}}</p>
+                    <p class="card-text">{{curiosidade[3]}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+
+    </section>
+{% endblock %}
