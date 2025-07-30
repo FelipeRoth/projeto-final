@@ -20,8 +20,16 @@ CREATE TABLE IF NOT EXISTS categorias (
 );
 '''
 
+sql_criar_tabela_entreterimento = '''
+CREATE TABLE IF NOT EXISTS entreterimentos (
+    id INTEGER PRIMARY KEY,
+    tipo_entretirimento TEXT NOT NULL
+);
+'''
+
 conn.execute(sql_criar_tabela_curiosidades)
 conn.execute(sql_criar_tabela_categoria)
+conn.execute(sql_criar_tabela_entreterimento)
 conn.commit()
 
 # 
@@ -40,6 +48,20 @@ lista_insert_categorias = [
 ]
 
 conn.executemany(sql_insert_categorias, lista_insert_categorias)
+
+# CADASTRAR ETRETERIMENTOS INICIAIS
+
+sql_insert_entreterimentos = '''
+INSERT INTO entreterumentos (nome) VALUES (?);
+'''
+lista_insert_entreterimentos = [
+    ('filme',),
+    ('serie',),
+    ('anime',),
+    ('desenho',),
+]
+
+conn.executemany(sql_insert_entreterimentos, lista_insert_entreterimentos)
 
 # CADASTRAR CURIOSIDADES INICIAIS
 

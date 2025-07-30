@@ -1,0 +1,25 @@
+{% extends 'br/template.html' %}
+
+{% block title %}
+Cadastro de Curiosidade
+{% endblock %}
+
+{% block body %}
+    
+<h1>Cadastro de Curiosidade</h1>
+<form action="/cadastrar" method="POST" enctype="multipart/form-data">
+    Categoria: 
+    
+    <select name="categoria">
+        {% for id, nome in categorias %}
+        <option value="{{id}}">{{nome.capitalize()}}</option>
+        {% endfor %}
+    </select>
+    
+    Filme: <input type="text" name="filme">
+    A curiosidade: <input type="text" name="curiosidade">
+    Img: <input type="file" name="img">
+    <input type="submit" value="Cadastrar">
+</form>
+
+{% endblock %}

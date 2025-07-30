@@ -10,16 +10,19 @@
         <p>{{ paragrafo }}</p>
     </section>
 
+    {% for elemento in elementos %}
         <div class="d-flex justify-content-center">
             <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
-                <div class="card" style="width: 18rem;">
-                    <img src="/static/img/{{elemento[0]}}.jpg" class="card-img-top" alt="...">
+                <div class="card">
+                    <img src="/static/img/{{elemento[2]}}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h2 class="card-title">{{elemento[1]}}</h2>
-                        <p class="card-text">{{elemento[2]}}</p>
+                        <h2 class="card-title">{{elemento[0]}}</h2>
+                        <p class="card-text">{{elemento[1]}}</p>
+                        <p class="card-text">{{elemento[3]}}</p>
                     </div>
                 </div>
             </div>
         </div>
+    {% endfor %}
 
 {% endblock %}

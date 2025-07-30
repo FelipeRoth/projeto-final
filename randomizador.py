@@ -1,4 +1,5 @@
 import random
+import sqlite3 as sql
 
 def paragrafo():
     txt = random.choice([
@@ -16,22 +17,27 @@ def titulo():
     ])
     return tt
 
-def cartao():
+def curisidade_aleatoria():
+    conn = sql.Connection('./curiosidades.db')
+    id = '''
+        SELECT id
+        FROM curiosidades
+    '''
 
-    card = [
-        ('1',
-         'Titanic (1997)',
-         'O orçamento para do filme foi maior do que o custo para construir o próprio navio.'),
-         ('2',
-          'Halloween (1978)',
-          'A famosa máscara usada pelo assassino em série Michael Myers não é uma peça original criada para o filme. Na verdade, trata-se de uma máscara do Capitão Kirk, de Star Trek, e custou apenas 2 dólares.'),
-         ('3',
-          'Batman: O Retorno (1992)',
-          'A roupa de Mulher-Gato usada por Michelle Pfeiffer era tão apertada que fazia a atriz sofrer uma série de desmaios durante as gravações.')
-    ]
+    id = conn.execute(id)
+    quantos_id = 0
+    for _ in id:
+        quantos_id = quantos_id + 1
 
-    return card
+    id_aleatorio = random.randrange(1, quantos_id+1)
 
-def random_cartao():
-    card = cartao()
-    return random.choice(card)
+    print(id_aleatorio)
+
+    sql_select_a_curiosidade = f'''
+        SELECT filme, fato, img, nome AS nome_categoria
+        FROM curiosidades
+        JOIN categorias ON id_categoria == categorias.id
+        WHERE curiosidades.id LIKE {id_aleatorio};
+    '''
+    a_curiosidade = conn.execute(sql_select_a_curiosidade)
+    return a_curiosidade
