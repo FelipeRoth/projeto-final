@@ -4,6 +4,11 @@
 Curiosidades
 {% endblock %}
 
+{% block link1 %}{% endblock %}
+{% block link2 %}link-secondary{% endblock %}
+{% block link3 %}{% endblock %}
+
+
 {% block body %}
     <section class="container-fluid">
         <h1>Todas as curiosidades</h1>
@@ -12,12 +17,20 @@ Curiosidades
         <div class="row" style="flex-wrap: wrap;">
         {% for curiosidade in curiosidades %}
         <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
-            <div class="card">
+        {% if curiosidade[3] == 'spoiler' %}
+            <div class="card text-bg-danger mb-3">
+        {% else %}
+            <div class="card text-bg-dark mb-3">
+        {% endif %}
                 <img src="/static/img/{{curiosidade[2]}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h2 class="card-title">{{curiosidade[0]}}</h2>
                     <p class="card-text">{{curiosidade[1]}}</p>
-                    <p class="card-text">{{curiosidade[3]}}</p>
+                {% if curiosidade[3] == 'spoiler' %}
+                    <p class="card-text" style="color:rgb(var(--bs-warning-rgb));"><i>{{curiosidade[3]}}</i></p>
+                {% else %}
+                    <p class="card-text"><i>{{curiosidade[3]}}</i></p>
+                {% endif %}
                 </div>
             </div>
         </div>

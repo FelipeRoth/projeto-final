@@ -20,16 +20,16 @@ CREATE TABLE IF NOT EXISTS categorias (
 );
 '''
 
-sql_criar_tabela_entreterimento = '''
-CREATE TABLE IF NOT EXISTS entreterimentos (
-    id INTEGER PRIMARY KEY,
-    tipo_entretirimento TEXT NOT NULL
-);
-'''
+# sql_criar_tabela_entreterimento = '''
+# CREATE TABLE IF NOT EXISTS entreterimentos (
+#     id INTEGER PRIMARY KEY,
+#     tipo_entretirimento TEXT NOT NULL
+# );
+# '''
 
 conn.execute(sql_criar_tabela_curiosidades)
 conn.execute(sql_criar_tabela_categoria)
-conn.execute(sql_criar_tabela_entreterimento)
+# conn.execute(sql_criar_tabela_entreterimento)
 conn.commit()
 
 # 
@@ -44,24 +44,25 @@ INSERT INTO categorias (nome) VALUES (?);
 lista_insert_categorias = [
     ('bobinha',),
     ('chocante',),
-    ('surprendente',)
+    ('surprendente',),
+    ('spoiler',)
 ]
 
 conn.executemany(sql_insert_categorias, lista_insert_categorias)
 
 # CADASTRAR ETRETERIMENTOS INICIAIS
 
-sql_insert_entreterimentos = '''
-INSERT INTO entreterumentos (nome) VALUES (?);
-'''
-lista_insert_entreterimentos = [
-    ('filme',),
-    ('serie',),
-    ('anime',),
-    ('desenho',),
-]
+# sql_insert_entreterimentos = '''
+# INSERT INTO entreterumentos (nome) VALUES (?);
+# '''
+# lista_insert_entreterimentos = [
+#     ('filme',),
+#     ('serie',),
+#     ('anime',),
+#     ('desenho',),
+# ]
 
-conn.executemany(sql_insert_entreterimentos, lista_insert_entreterimentos)
+# conn.executemany(sql_insert_entreterimentos, lista_insert_entreterimentos)
 
 # CADASTRAR CURIOSIDADES INICIAIS
 
@@ -89,6 +90,13 @@ lista_insert_curiosidades = [
         'A roupa de Mulher-Gato usada por Michelle Pfeiffer era tão apertada que fazia a atriz sofrer uma série de desmaios durante as gravações.',
         '3.jpg',
         '2'
+    ),
+
+    (
+        'Breaking Bad (2008-2013)',
+        'Os episódios 1, 2, 10 e 13 da segunda temporada apresentam teasers em preto e branco. Quando você combina os títulos desses episódios, você obtém Seven Thirty-Seven / Down / Over / ABQ – uma antecipação do acidente de avião que aconteceria no final da temporada.',
+        '4.jpg',
+        '4'
     )
 ]
 

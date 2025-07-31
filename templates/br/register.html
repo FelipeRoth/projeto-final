@@ -1,0 +1,48 @@
+{% extends 'br/template.html' %}
+
+{% block title %}
+Cadastro de Curiosidade
+{% endblock %}
+
+{% block link1 %}{% endblock %}
+{% block link2 %}{% endblock %}
+{% block link3 %}link-secondary{% endblock %}
+
+{% block body %}
+
+<h1>Cadastro de Curiosidade</h1>
+<div class="d-flex justify-content-center">
+    <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
+        <div class="card text-bg-dark mb-3">
+            <div class="card-body">
+            <form action="/cadastrar" method="POST" enctype="multipart/form-data" class="row g-3">
+                    <div class="col-md-6">
+                        <label for="filme" class="form-label"><h2>Titulo da obra:</h2></label> 
+                        <input type="text" class="form-control" name="filme">
+                    </div>
+                    <div class="offset-md-8">
+                        <input type="submit" class="btn btn-primary btn-lg" value="Cadastrar">
+                    </div>
+                    <div class="col-12">
+                        <label for="curiosidade" class="form-label">A curiosidade:</label> 
+                        <input type="text" class="form-control" name="curiosidade" style="height: 10rem;">
+                    </div>
+                    <div class="col-md-5">
+                        <label for="img" class="form-label">Img: </label>
+                        <input type="file" name="img" class="form-control">
+                    </div>
+                    <div class="col-md-2  offset-md-4" >
+                        <label for="categoria" class="form-label">Categoria:</label>
+                        <select name="categoria" class="form-select">
+                            {% for id, nome in categorias %}
+                            <option value="{{id}}">{{nome.capitalize()}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

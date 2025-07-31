@@ -58,7 +58,7 @@ def get_cadastrar():
         
         lista_categorias = conn.execute(sql_select_categorias)
         #retorno: [(1,'bobinha'), (2, 'chocante'), (3, 'surprendente')] 
-    return fk.render_template("br/cadastrar.html", categorias = lista_categorias)
+    return fk.render_template("br/register.html", categorias = lista_categorias)
 
 @app.post('/cadastrar')
 def fazer_cadastro():

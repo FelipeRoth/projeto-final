@@ -4,21 +4,33 @@
 {{ titulo }}
 {% endblock %}
 
+{% block link1 %}link-secondary{% endblock %}
+{% block link2 %}{% endblock %}
+{% block link3 %}{% endblock %}
+
 {% block body %}
     <section class="container-fluid">
         <h1>{{ titulo }}</h1>
-        <p>{{ paragrafo }}</p>
+        <p style="color: --bs-warning;">{{ paragrafo }}</p>
     </section>
 
     {% for elemento in elementos %}
         <div class="d-flex justify-content-center">
             <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
-                <div class="card">
+            {% if elemento[3] == 'spoiler' %}
+                <div class="card text-bg-danger mb-3">
+            {% else %}
+                <div class="card text-bg-dark mb-3">
+            {% endif %}
                     <img src="/static/img/{{elemento[2]}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h2 class="card-title">{{elemento[0]}}</h2>
                         <p class="card-text">{{elemento[1]}}</p>
-                        <p class="card-text">{{elemento[3]}}</p>
+                    {% if elemento[3] == 'spoiler' %}
+                        <p class="card-text" style="color:rgb(var(--bs-warning-rgb));"><i>{{elemento[3]}}</i></p>
+                    {% else %}
+                        <p class="card-text"><i>{{elemento[3]}}</i></p>
+                    {% endif %}
                     </div>
                 </div>
             </div>
