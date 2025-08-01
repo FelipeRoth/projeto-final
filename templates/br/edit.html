@@ -1,17 +1,17 @@
 {% extends 'br/template.html' %}
 
 {% block title %}
-Cadastro de Curiosidade
+Editando curiosidade
 {% endblock %}
 
 {% block link1 %}{% endblock %}
 {% block link2 %}{% endblock %}
 {% block link3 %}{% endblock %}
-{% block link5 %}link-secondary{% endblock %}
+{% block link5 %}{% endblock %}
 
 {% block body %}
 
-<h1>Cadastro de Curiosidade</h1>
+<h1>Editando curiosidade</h1>
 <div class="d-flex justify-content-center">
     <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
         <div class="card text-bg-dark mb-3">
@@ -33,8 +33,9 @@ Cadastro de Curiosidade
                         <label for="categoria" class="form-label">Categoria:</label>
                         <select name="categoria" class="form-select">
                             {% for id, nome in categorias %}
-                            <option value="{{id}}">{{nome.capitalize()}}</option>
-                            {% endfor %}
+                                <option {% if id == produto['id_categoria'] %} selected {%endif%}                
+                                    value="{{id}}">{{nome.capitalize()}}</option>  
+                            {% endfor %}  
                         </select>
                     </div>
                     <div class="">

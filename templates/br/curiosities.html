@@ -7,6 +7,7 @@ Curiosidades
 {% block link1 %}{% endblock %}
 {% block link2 %}link-secondary{% endblock %}
 {% block link3 %}{% endblock %}
+{% block link5 %}{% endblock %}
 
 
 {% block body %}
@@ -31,6 +32,17 @@ Curiosidades
                 {% else %}
                     <p class="card-text"><i>{{curiosidade[3]}}</i></p>
                 {% endif %}
+
+
+                {% if adm == True %}
+                    <a href="/editar/{{ curiosidade[3] }}" class="btn btn-warning">Editar</a>
+                    {% if curiosidade[3] == 'spoiler' %}
+                        <a href="/excluir/{{ curiosidade[3] }}" class="btn btn-dark">Excluir</a>
+                    {% else %}
+                        <a href="/excluir/{{ curiosidade[3] }}" class="btn btn-danger">Excluir</a>
+                    {% endif %}
+                {% else %}
+                {% endif%}
                 </div>
             </div>
         </div>
