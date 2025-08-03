@@ -16,7 +16,7 @@ def casa_br():
 def adm():
     with sql.Connection('./curiosidades.db') as conn:
         sql_select_curiosidades = '''
-        SELECT filme, fato, img, nome AS nome_categoria
+        SELECT filme, fato, img, nome AS nome_categoria, curiosidades.id
         FROM curiosidades
         JOIN categorias ON id_categoria == categorias.id;
     '''
@@ -30,7 +30,7 @@ def adm():
 def cards_curiosidades():
     with sql.Connection('./curiosidades.db') as conn:
         sql_select_curiosidades = '''
-        SELECT filme, fato, img, nome AS nome_categoria
+        SELECT filme, fato, img, nome AS nome_categoria, curiosidades.id
         FROM curiosidades
         JOIN categorias ON id_categoria == categorias.id;
     '''
@@ -63,30 +63,54 @@ def post_buscar():
     return fk.render_template('br/curiosities.html', curiosidades = lista_de_filmes)
 
 @app.get('/editar/<id_filme>')
-def buscar(id_filme):
+def editar(id_filme):
     with sql.Connection('curiosidades.db') as conn:
         sql_select_categorias = "SELECT id, nome FROM categorias;"
         sql_dados_curiosidade = f'''
-            SELECT filme, fato, img, nome AS nome_categoria
+            SELECT filme, fato, img, id_categoria, curiosidades.id AS filme_id
             FROM curiosidades
-            JOIN categorias ON id_categoria == categorias.id;
-            WHERE id = {id_filme}
+            WHERE filme_id = {id_filme}
             '''
         lista_categorias = conn.execute(sql_select_categorias)    
         registro_curiosidade = conn.execute(sql_dados_curiosidade)
 
-        filme, fato, img, nome_categoria = next(registro_curiosidade)
+        filme, fato, img, id_categoria, filme_id= next(registro_curiosidade)
         dados_curiosidade = {
-            "id": id,
-            "nome": filme,
-            "preco": fato,
+            "filme": filme,
+            "fato": fato,
             "img": img,
-            "id_categoria": nome_categoria
+            "id_categoria": id_categoria,
+            "id": filme_id
         }
 
         return fk.render_template('br/edit.html',
                                      categorias = lista_categorias,
                                      curiosidade = dados_curiosidade)
+
+@app.post("/atualizar")
+def atualizar_curiosidade():
+    filme = fk.request.form['filme']
+    fato = fk.request.form['fato']
+    arquivo_imagem = fk.request.files['img']
+    id_categoria = fk.request.form['id_categoria']
+    id = fk.request.form['id']
+
+    arquivo_imagem.save(f"./static/img/{arquivo_imagem.filename}")
+    img = arquivo_imagem.filename
+
+    sql_atualizar_curiosidade = f'''
+    UPDATE curiosidades 
+    SET filme="{filme}",
+        fato="{fato}",
+        img="{img}",
+        id_categoria="{id_categoria}"
+    WHERE curiosidades.id = {id}    
+'''
+    with sql.Connection('curiosidades.db') as conn:
+        conn.execute(sql_atualizar_curiosidade)
+        conn.commit()
+
+    return fk.redirect("/adm")
 
 @app.get("/cadastrar")
 def get_cadastrar():

@@ -35,11 +35,11 @@ Curiosidades
 
 
                 {% if adm == True %}
-                    <a href="/editar/{{ curiosidade[3] }}" class="btn btn-warning">Editar</a>
-                    {% if curiosidade[3] == 'spoiler' %}
-                        <a href="/excluir/{{ curiosidade[3] }}" class="btn btn-dark">Excluir</a>
+                    <a href="/editar/{{ curiosidade[4] }}" class="btn btn-warning">Editar</a>
+                    {% if curiosidade[4] == 'spoiler' %}
+                        <a href="/excluir/{{ curiosidade[4] }}" class="btn btn-dark">Excluir</a>
                     {% else %}
-                        <a href="/excluir/{{ curiosidade[3] }}" class="btn btn-danger">Excluir</a>
+                        <a href="/excluir/{{ curiosidade[4] }}" class="btn btn-danger">Excluir</a>
                     {% endif %}
                 {% else %}
                 {% endif%}

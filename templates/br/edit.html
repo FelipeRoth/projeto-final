@@ -16,31 +16,35 @@ Editando curiosidade
     <div class="col-sm-6 mb-3 mb-sm-0" style="margin-top: 2rem;">
         <div class="card text-bg-dark mb-3">
             <div class="card-body">
-            <form action="/cadastrar" method="POST" enctype="multipart/form-data" class="row g-3">
-                    <div class="col-md-6">
+            <form action="/atualizar" method="POST" enctype="multipart/form-data" class="row g-3">
+                <div class="col-md-6">
                         <label for="filme" class="form-label"><h2>Titulo da obra:</h2></label> 
-                        <input type="text" class="form-control" name="filme">
+                        <input type="text" class="form-control" name="filme" value="{{curiosidade['filme']}}">
                     </div>
                     <div class="col-12">
-                        <label for="curiosidade" class="form-label">A curiosidade:</label> 
-                        <input type="text" class="form-control" name="curiosidade" style="height: 10rem;">
+                        <label for="fato" class="form-label">A curiosidade:</label> 
+                        <textarea type="text" class="form-control" name="fato" style="height: 10rem;" >{{curiosidade['fato']}}</textarea>
                     </div>
                     <div class="col-md-5">
                         <label for="img" class="form-label">Img: </label>
-                        <input type="file" name="img" class="form-control">
+                        <input type="file" name="img" class="form-control" value="{{curiosidade['img']}}">
                     </div>
                     <div class="col-md-2  offset-md-4" style="margin-bottom: 2rem;">
                         <label for="categoria" class="form-label">Categoria:</label>
-                        <select name="categoria" class="form-select">
+                        <select name="id_categoria" class="form-select">
                             {% for id, nome in categorias %}
-                                <option {% if id == produto['id_categoria'] %} selected {%endif%}                
-                                    value="{{id}}">{{nome.capitalize()}}</option>  
+                            <option {% if id == curiosidade['id_categoria'] %} selected {%endif%}                
+                            value="{{id}}">{{nome.capitalize()}}</option>  
                             {% endfor %}  
                         </select>
                     </div>
                     <div class="">
                         <input type="submit" class="position-absolute top-100 start-50 translate-middle btn btn-sm btn-primary rounded-pill" value="Cadastrar" style="height: 5rem; width: 15rem; font-size: 2rem;">
                     </div>
+
+                    <input type="hidden" name="id" value="{{ curiosidade['id'] }}">
+
+
                 </form>
             </div>
         </div>
