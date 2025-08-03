@@ -142,8 +142,21 @@ def fazer_cadastro():
 
     return fk.redirect("/curiosidades")
 
+@app.get("/excluir/<id_curiosidade>")
+def excluir_curiosidade(id_curiosidade):
+    sql_excluir_curiosidade = f'''
+    DELETE FROM curiosidades WHERE id = {id_curiosidade}
+'''
+    with sql.Connection('curiosidades.db') as conn:        
+        conn.execute(sql_excluir_curiosidade)
+        conn.commit()
+
+    return fk.redirect("/adm")
+
+
 @app.get('/en')
 def home_light():
     return fk.render_template('en/template.html')
 
-app.run(host='0.0.0.0', debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=False)
